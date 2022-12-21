@@ -1,0 +1,44 @@
+using System;
+
+namespace FibonacciAverage
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Kullanıcıdan derinliği al
+            Console.WriteLine("Lütfen bir derinlik girin:");
+            int depth = int.Parse(Console.ReadLine());
+
+            // Fibonacci serisinin ilk iki elemanını tanımla
+            int a = 0;
+            int b = 1;
+
+            // Toplam ve sayaç değişkenlerini tanımla
+            int total = 0;
+            int count = 0;
+
+            // Fibonacci serisinin ilk iki elemanını topla ve sayaçı arttır
+            total += a;
+            total += b;
+            count += 2;
+
+            // Derinliğe kadar döngü
+            for (int i = 0; i < depth - 2; i++)
+            {
+                // Sonraki elemanı hesapla ve topla
+                int c = a + b;
+                total += c;
+                count++;
+
+                // a ve b değişkenlerini güncelle
+                a = b;
+                b = c;
+            }
+
+            // Ortalamayı hesapla ve ekrana yazdır
+            double average = (double)total / count;
+            Console.WriteLine("Fibonacci serisinin ortalaması: " + average);
+        }
+    }
+}
