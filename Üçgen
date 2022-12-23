@@ -1,0 +1,31 @@
+using System;
+
+namespace TriangleDrawer
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Üçgen çizme uygulamasına hoşgeldiniz!");
+
+            // Kullanıcıdan üçgenin taban ve yükseklik değerlerini alıyoruz.
+            Console.Write("Lütfen üçgenin tabanını giriniz: ");
+            int baseLength = int.Parse(Console.ReadLine());
+            Console.Write("Lütfen üçgenin yüksekliğini giriniz: ");
+            int height = int.Parse(console.ReadLine());
+
+            // Alınan değerlere göre üçgeni çizme işlemini yapıyoruz.
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < baseLength; j++)
+                {
+                    if (i == 0 || j == 0 || i == height - 1 || j == baseLength - 1)
+                        Console.Write("*");
+                    else
+                        Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
