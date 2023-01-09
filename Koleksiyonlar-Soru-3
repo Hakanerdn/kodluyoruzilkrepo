@@ -1,0 +1,24 @@
+using System;
+using System.Linq;
+
+namespace VowelSorter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Lütfen bir cümle giriniz:");
+            string input = Console.ReadLine();
+
+            // Sesli harfleri diziye ekle
+            char[] vowels = input.Where(c => "aeıioöuü".Contains(c)).ToArray();
+
+            // Diziyi sırala
+            Array.Sort(vowels);
+
+            // Sonuçları ekrana yaz
+            Console.WriteLine("Girilen cümlede sesli harfler:");
+            Console.WriteLine(string.Join(", ", vowels));
+        }
+    }
+}
