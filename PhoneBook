@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Phonebook
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, string> phonebook = new Dictionary<string, string>();
+
+            while (true)
+            {
+                Console.WriteLine("1. Telefon Numarası Kaydet");
+                Console.WriteLine("2. Telefon Numarası Sil");
+                Console.WriteLine("3. Telefon Numarası Güncelle");
+                Console.WriteLine("4. Rehber Listeleme (A-Z, Z-A seçimli)");
+                Console.WriteLine("5. Rehberde Arama");
+                Console.WriteLine("6. Çıkış");
+
+                Console.Write("Seçiminiz: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                if (choice == 1)
+                {
+                    Console.Write("Ad: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Telefon Numarası: ");
+                    string phoneNumber = Console.ReadLine();
+                    phonebook[name] = phoneNumber;
+                }
+                else if (choice == 2)
+                {
+                    Console.Write("Ad: ");
+                    string name = Console.ReadLine();
+                    phonebook.Remove(name);
+                }
+                else if (choice == 3)
+                {
+                    Console.Write("Ad: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Yeni Telefon Numarası: ");
+                    string phoneNumber = Console.ReadLine();
+                    phonebook[name] = phoneNumber;
+                }
+                else if (choice == 4)
+                {
+                    Console.WriteLine("1. A-Z");
+                    Console.WriteLine("2. Z-A");
+                    Console.Write("Seçiminiz: ");
+                    int sortChoice = Convert.ToInt32(Console.ReadLine());
+                    if (sortChoice == 1)
+                    {
+                        var sortedPhonebook =
+                            from entry in phonebook
+                            orderby entry.Key ascending
+                            select entry;
+                        foreach (var entry in sortedPhonebook)
+                        {
+                            Console.WriteLine(entry.Key + ": " + entry.Value);
+                        }
+                    }
+                    else if (sortChoice == 2)
+                    {
+                        var sortedPhonebook =
+                            from entry in phonebook
+                            orderby entry.Key descending
+                            select entry;
+                        foreach (var entry in sortedPhonebook)
+                        {
+                            Console.WriteLine(entry.Key + ": " + entry.Value);
+                        }
+                    }
+                }
+                else if (choice == 5)
+                {
+                    Console.Write("Aranacak İsim: ");
+                    string name = Console.ReadLine();
+                    if (phonebook.ContainsKey(name))
+                    {
+                        Console.WriteLine(name + ": " + phonebook[name]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Bu isimde bir kayıt bulunamadı.");
+                    }
+                }
+                else if (choice == 6)
+                {
+                    Console.WriteLine("Çıkış yapıldı.");
+                    break;
+                }
+            }
+        }
+    }
+}
