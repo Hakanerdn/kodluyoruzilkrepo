@@ -1,0 +1,21 @@
+using System;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Lütfen bir cümle yazın:");
+            string sentence = console.ReadLine();
+
+            int wordCount = sentence.Split(' ').Length;
+            int letterCount = sentence.Length;
+
+            Console.WriteLine("Cümlede " + wordCount + " kelime var.");
+            Console.WriteLine("Cümlede " + letterCount + " harf var.");
+
+            Console.ReadLine();
+        }
+    }
+}
