@@ -1,0 +1,32 @@
+using System;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Lütfen pozitif iki sayı girin (n, m):");
+            int n = Convert.ToInt32(console.ReadLine());
+            int m = Convert.ToInt32(console.ReadLine());
+
+            int[] numbers = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine((i + 1) + ". sayıyı girin:");
+                numbers[i] = Convert.ToInt32(console.ReadLine());
+            }
+
+            Console.WriteLine("Girilen sayıların " + m + "'e eşit yada tam bölünenleri:");
+            foreach (int number in numbers)
+            {
+                if (number % m == 0)
+                {
+                    Console.WriteLine(number);
+                }
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
