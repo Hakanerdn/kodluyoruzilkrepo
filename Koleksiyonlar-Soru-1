@@ -1,0 +1,82 @@
+using System;
+using System.Collections;
+
+namespace ConsoleApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ArrayList primeNumbers = new ArrayList();
+            ArrayList nonPrimeNumbers = new ArrayList();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                Console.WriteLine("Enter a positive number:");
+                string input = Console.ReadLine();
+
+                // Check if the input is a positive number
+                if (!int.TryParse(input, out int number) || number <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a positive number.");
+                    i--;
+                    continue;
+                }
+
+                // Check if the number is prime
+                bool isPrime = true;
+                for (int j = 2; j <= Math.Sqrt(number); j++)
+                {
+                    if (number % j == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+
+                if (isPrime)
+                {
+                    primeNumbers.Add(number);
+                }
+                else
+                {
+                    nonPrimeNumbers.Add(number);
+                }
+            }
+
+            // Sort the lists in descending order
+            primeNumbers.Sort();
+            primeNumbers.Reverse();
+            nonPrimeNumbers.Sort();
+            nonPrimeNumbers.Reverse();
+
+            // Print the prime numbers
+            Console.WriteLine("Prime numbers:");
+            Console.WriteLine("Count: " + primeNumbers.Count);
+            Console.WriteLine("Average: " + GetAverage(primeNumbers));
+            foreach (int number in primeNumbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            // Print the non-prime numbers
+            Console.WriteLine("Non-prime numbers:");
+            Console.WriteLine("Count: " + nonPrimeNumbers.Count);
+            Console.WriteLine("Average: " + GetAverage(nonPrimeNumbers));
+            foreach (int number in nonPrimeNumbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
+
+        static double GetAverage(ArrayList list)
+        {
+            int sum = 0;
+            foreach (int number in list)
+            {
+                sum += number;
+            }
+            return (double)sum / list.Count;
+        }
+    }
+}
